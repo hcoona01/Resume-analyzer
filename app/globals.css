@@ -1,0 +1,174 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ink: #0a0a0f;
+  --ink-soft: #1a1a2e;
+  --ink-muted: #2d2d44;
+  --slate-100: #efeff8;
+  --slate-200: #dcdcf0;
+  --slate-400: #9898be;
+  --slate-600: #5a5a82;
+  --azure: #2563eb;
+  --azure-light: #3b82f6;
+  --azure-glow: rgba(37, 99, 235, 0.2);
+  --emerald: #059669;
+  --emerald-light: #10b981;
+  --amber: #d97706;
+  --rose: #e11d48;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--ink);
+  color: white;
+  font-family: "DM Sans", sans-serif;
+  min-height: 100vh;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--ink-soft);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--ink-muted);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--slate-600);
+}
+
+/* Glow effect classes */
+.glow-azure {
+  box-shadow: 0 0 30px var(--azure-glow), 0 0 60px rgba(37, 99, 235, 0.1);
+}
+
+.glow-emerald {
+  box-shadow: 0 0 20px rgba(5, 150, 105, 0.2);
+}
+
+/* Noise texture overlay */
+.noise-overlay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* Glass morphism */
+.glass {
+  background: rgba(26, 26, 46, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(152, 152, 190, 0.12);
+}
+
+.glass-strong {
+  background: rgba(26, 26, 46, 0.85);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  border: 1px solid rgba(152, 152, 190, 0.15);
+}
+
+/* Shimmer loading */
+.shimmer-bg {
+  background: linear-gradient(
+    90deg,
+    var(--ink-muted) 0%,
+    rgba(90, 90, 130, 0.4) 50%,
+    var(--ink-muted) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.8s linear infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Score ring animation */
+@keyframes score-draw {
+  from {
+    stroke-dashoffset: 283;
+  }
+}
+
+/* Section fade in */
+@keyframes section-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.section-animate {
+  animation: section-in 0.4s ease-out forwards;
+}
+
+/* Custom focus ring */
+textarea:focus,
+input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.4);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #fff 0%, #9898be 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-azure {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Pulsing dot */
+@keyframes ping-slow {
+  75%,
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+.ping-slow {
+  animation: ping-slow 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* Grid background */
+.grid-bg {
+  background-image: linear-gradient(
+      rgba(152, 152, 190, 0.04) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(152, 152, 190, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
